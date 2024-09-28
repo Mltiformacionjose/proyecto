@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider de Imágenes con jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      /* Estilo del contenedor del slider */
+      .slider {
+        width: 400px;
+        height: 250px;
+        overflow: hidden;
+        border: 2px solid #ddd;
+        position: relative;
+      }
+      /* Estilo de las imágenes */
+      .slider img {
+        width: 400px;
+        height: 250px;
+        float: left;
+      }
+      /* Estilo del contenedor de las imágenes */
+      .slider-container {
+        width: 1600px; /* 4 imágenes de 400px cada una */
+        position: absolute;
+        left: 0;
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        // Variables para el slider
+        var sliderContainer = $(".slider-container");
+        var imgCount = $(".slider-container img").length; // Número de imágenes
+        var imgWidth = $(".slider img").width(); // Ancho de una imagen
+        var currentIndex = 0;
+
+        // Función para mover el slider
+        function moveSlider() {
+          currentIndex++;
+          if (currentIndex >= imgCount) {
+            currentIndex = 0; // Volver al inicio si llegamos al final
+          }
+
+          // Animar el contenedor de las imágenes
+          sliderContainer.animate(
+            {
+              left: -imgWidth * currentIndex,
+            },
+            800
+          ); // Animación en 0.8 segundos
+        }
+
+        // Ejecutar la función cada 3 segundos
+        setInterval(moveSlider, 3000);
+      });
+    </script>
+  </head>
+  <body>
+    <div class="slider">
+      <div class="slider-container">
+        <img src="images.jpeg" alt="Imagen 1" />
+        <img src="1366_2000.jpg" alt="Imagen 2" />
+        <img src="1366_2000.png" alt="Imagen 3" />
+        <img
+          src="como_hacer_fotos_de_alta_resolucion_en_300_dpi_1427_600.jpg"
+          alt="Imagen 4"
+        />
+      </div>
+    </div>
+  </body>
+</html>
